@@ -11,7 +11,7 @@
             <div class="w-full"></div>
             <div class="w-full sm:w-64 inline-block relative float-right">
 
-                <input type="" name=""
+                <input type="search" name="search" wire:model="searchParam"
                     class="leading-snug border border-gray-300 block w-full appearance-none bg-gray-100 text-sm text-gray-600 py-1 px-4 pl-8 rounded-lg"
                     placeholder="Search" />
 
@@ -38,8 +38,8 @@
                         <td class="px-4 py-4"> {{ $item->id }} {{ $item->name }}</td>
                         <td class="px-4 py-4">{{ $item->description }}</td>
                         <td class="px-4 py-4 flex space-x-4"> 
-                            <a href="#" wire:click="edit({{ $item->id }})" class="text-yellow-400">Edit</a>
-                            <a href="#" wire:click="delete({{ $item->id }})" class="text-red-500">Delete</a>
+                            <a href="#" wire:click.prevent="edit({{ $item->id }})" class="text-yellow-400">Edit</a>
+                            <a href="#" wire:click.prevent="delete({{ $item->id }})" class="text-red-500">Delete</a>
                             
                         </td>
                     </tr>

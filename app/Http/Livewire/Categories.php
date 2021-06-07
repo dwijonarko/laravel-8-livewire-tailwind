@@ -9,7 +9,7 @@ use Livewire\WithPagination;
 class Categories extends Component
 {
     use WithPagination;
-    public $categorie, $category_id, $name, $description;
+    public $categorie, $category_id, $name, $description,$searchParam;
     public $updateMode = false;
     public $showModal = false;
     public $showAlert=false;
@@ -20,8 +20,9 @@ class Categories extends Component
 
     public function render()
     {
+        $searchParam = '%'.$this->searchParam.'%';
         return view('livewire.categories', [
-            'data' => ModelsCategories::paginate(5),
+            'data' => ModelsCategories::where('name','like',$searchParam)->paginate(5),
         ]);
     }
 
