@@ -14,9 +14,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Categories::paginate(5);
-        $categories->withPath('/categories');
-        return view('categories')->with('categories',$categories);
+        //
     }
 
     /**
