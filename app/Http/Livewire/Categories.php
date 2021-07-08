@@ -9,11 +9,11 @@ use Livewire\WithPagination;
 class Categories extends Component
 {
     use WithPagination;
-    public $categorie, $category_id, $name, $description,$searchParam;
+    public $categories, $category_id, $name, $description,$searchParam;
     public $updateMode = false;
     public $showModal = false;
     public $showAlert=false;
-    public $columnOrder = 'name';
+    public $columnOrder = 'id';
     public $order = 'ASC';
     protected $rules = [
         'name' => 'required|min:3',

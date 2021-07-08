@@ -27,15 +27,23 @@
         <table class="table-auto border-collapse w-full">
             <thead>
                 <tr class="rounded-lg text-sm font-medium text-gray-700 text-left" style="font-size: 0.9674rem">
-                    <th  wire:click="sort('name')" class="px-4 py-2 bg-gray-200 " style="background-color:#f8f8f8">Name</th>
-                    <th  wire:click="sort('description')" class="px-4 py-2 " style="background-color:#f8f8f8">Description</th>
+                    <th  wire:click="sort('name')" class="px-4 py-2 bg-gray-200" style="background-color:#f8f8f8">
+                        <div class="flex flex-row">
+                        Name @include('livewire.components.sort',['column'=>'name'])
+                        </div>
+                    </th>
+                    <th  wire:click="sort('description')" class="px-4 py-2" style="background-color:#f8f8f8">
+                        <div class="flex flex-row">
+                        Description @include('livewire.components.sort',['column'=>'description'])
+                        </div>
+                    </th>
                     <th class="px-4 py-2 " style="background-color:#f8f8f8">Action</th>
                 </tr>
             </thead>
             <tbody class="text-sm font-normal text-gray-700">
                 @foreach ($data as $item)
                     <tr class="hover:bg-gray-100 border-b border-gray-200 py-10">
-                        <td class="px-4 py-4"> {{ $item->id }} {{ $item->name }}</td>
+                        <td class="px-4 py-4">{{ $item->name }}</td>
                         <td class="px-4 py-4">{{ $item->description }}</td>
                         <td class="px-4 py-4 flex space-x-4"> 
                             <a href="#" wire:click.prevent="edit({{ $item->id }})" class="text-yellow-400">Edit</a>
