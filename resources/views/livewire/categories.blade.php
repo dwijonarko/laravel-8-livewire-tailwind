@@ -27,8 +27,8 @@
         <table class="table-auto border-collapse w-full">
             <thead>
                 <tr class="rounded-lg text-sm font-medium text-gray-700 text-left" style="font-size: 0.9674rem">
-                    <th class="px-4 py-2 bg-gray-200 " style="background-color:#f8f8f8">Name</th>
-                    <th class="px-4 py-2 " style="background-color:#f8f8f8">Description</th>
+                    <th  wire:click="sort('name')" class="px-4 py-2 bg-gray-200 " style="background-color:#f8f8f8">Name</th>
+                    <th  wire:click="sort('description')" class="px-4 py-2 " style="background-color:#f8f8f8">Description</th>
                     <th class="px-4 py-2 " style="background-color:#f8f8f8">Action</th>
                 </tr>
             </thead>

@@ -13,6 +13,8 @@ class Categories extends Component
     public $updateMode = false;
     public $showModal = false;
     public $showAlert=false;
+    public $columnOrder = 'name';
+    public $order = 'ASC';
     protected $rules = [
         'name' => 'required|min:3',
         'description' => 'required',
@@ -21,8 +23,10 @@ class Categories extends Component
     public function render()
     {
         $searchParam = '%'.$this->searchParam.'%';
+        $order = $this->order;
+        $columnOrder = $this->columnOrder;
         return view('livewire.categories', [
-            'data' => ModelsCategories::where('name','like',$searchParam)->paginate(5),
+            'data' => ModelsCategories::orderBy($columnOrder,$order)->where('name','like',$searchParam)->paginate(5),
         ]);
     }
 
@@ -82,5 +86,10 @@ class Categories extends Component
         $this->category_id='';
         $this->name = '';
         $this->description = '';
+    }
+
+    public function sort($column){
+        $this->order = $this->order == 'ASC' ? 'DESC' : 'ASC';
+        $this->columnOrder = $column;
     }
 }
