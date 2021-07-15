@@ -44,19 +44,20 @@
 
                                 <div>
                                     <x-label for="level_id" :value="__('User level')" />
-                                    <select name="level_id" id="level_id" class="blck mt-1 w-full">
+                                    <x-select name="level_id" id="level_id" class="blck mt-1 w-full"   >
                                         @foreach ($levels as $key=>$value )
                                             <option value="{{$key}}" {{ $key == Auth::user()->level_id ? 'selected' : '' }} >{{$value}}</option>
                                         @endforeach
-                                    </select>
+                                    </x-select>
                                 </div>
 
-                                <div>
+                               
+                            </div>
+                             <div>
                                     <x-button >
                                         {{ __('Update') }}
                                     </x-button>
                                 </div>
-                            </div>
                         </div>
                     </form>
                 </div>
