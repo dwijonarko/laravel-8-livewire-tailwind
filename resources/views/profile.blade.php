@@ -24,7 +24,7 @@
 
                                 <div>
                                     <x-label for="username" :value="__('User Name')" />
-                                    <x-input id="username" class="block mt-1 w-full" type="text" name="username" value="{{Auth::user()->username}}" autofocus/>
+                                    <x-input id="username" class="block mt-1 w-full" type="text" name="username" value="{{Auth::user()->username}}" autofocus readonly/>
                                 </div>
                                 <div>
                                     <x-label for="email" :value="__('Email')" />
@@ -40,6 +40,15 @@
                                 <div>
                                     <x-label for="confirm_password" :value="__('Password Confirmation')" />
                                     <x-input id="confirm_password" class="block mt-1 w-full" type="password" name="password_confirmation" value="" autocomplete="newconfirm-password" />
+                                </div>
+
+                                <div>
+                                    <x-label for="level_id" :value="__('User level')" />
+                                    <select name="level_id" id="level_id" class="blck mt-1 w-full">
+                                        @foreach ($levels as $key=>$value )
+                                            <option value="{{$key}}" {{ $key == Auth::user()->level_id ? 'selected' : '' }} >{{$value}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
                                 <div>

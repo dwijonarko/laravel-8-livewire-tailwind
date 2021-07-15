@@ -28,7 +28,7 @@ class UpdateProfileRequest extends FormRequest
             'name'=>'required',
             'username'=>'required|unique:users,username,'.Auth::user()->id,
             'email'=>'required|email|unique:users,email,'.Auth::user()->id,
-            'password'=>'sometimes|min:6|confirmed'
+            'password'=>'sometimes|nullable|min:6|confirmed'
         ];
     }
 }

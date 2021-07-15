@@ -23,7 +23,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/dashboard',function(){
         return view('dashboard');
     })->name('dashboard');
-    Route::view('profile','profile')->name('profile');
+    Route::get('profile',[ProfileController::class,'index'])->name('profile');
     Route::put('profile',[ProfileController::class,'update'])->name('profile.update');
 
     Route::view('categories','categories')->name('categories.index');
