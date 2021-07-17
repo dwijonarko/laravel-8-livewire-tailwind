@@ -6,8 +6,10 @@
     <x-success-message />
     <div class="overflow-x-auto mt-6">
         <div class="w-full flex px-2 my-2">
+            @can('adminFunction',App\Models\Categories::class)
             <button wire:click="openModal(true)"
                 class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-1 bg-blue-600 text-base text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">Add</button>
+            @endcan
             <div class="w-full"></div>
             <div class="w-full sm:w-64 inline-block relative float-right">
 
@@ -37,19 +39,23 @@
                         Description @include('livewire.components.sort',['column'=>'description'])
                         </div>
                     </th>
-                    <th class="px-4 py-2 " style="background-color:#f8f8f8">Action</th>
+                    @can('adminFunction',App\Models\Categories::class)
+                        <th class="px-4 py-2 " style="background-color:#f8f8f8">Action</th>
+                    @endcan
+                    
                 </tr>
             </thead>
             <tbody class="text-sm font-normal text-gray-700">
                 @foreach ($data as $item)
                     <tr class="hover:bg-gray-100 border-b border-gray-200 py-10">
-                        <td class="px-4 py-4">{{ $item->name }}</td>
-                        <td class="px-4 py-4">{{ $item->description }}</td>
+                        <td class="px-4 py-4">{{ $item->name }} </td>
+                        <td class="px-4 py-4">{{ $item->description }}</td> 
+                        @if (Auth::user()->can('adminFunction', App\Models\Categories::class))
                         <td class="px-4 py-4 flex space-x-4"> 
                             <a href="#" wire:click.prevent="edit({{ $item->id }})" class="text-yellow-400">Edit</a>
                             <a href="#" wire:click.prevent="delete({{ $item->id }})" class="text-red-500">Delete</a>
-                            
-                        </td>
+                        </td> 
+                        @endif
                     </tr>
                 @endforeach
 
