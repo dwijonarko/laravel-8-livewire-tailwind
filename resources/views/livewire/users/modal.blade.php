@@ -48,26 +48,26 @@
                         <div class="form w-full py-2">
 
                             <div class="px-3 py-3 mb-6 md:mb-0">
-                                <input type="hidden" name="user_id" wire:model="user_id">
+                                <input type="hidden" name="user_id" wire:model.defer="user_id">
                                 <input
                                     class="appearance-none block w-full bg-green-lighter text-green-darker border border-green-200 focus:border-green-100 rounded py-3 px-4 mb-3 "
-                                    id="name" type="text" placeholder="Full Name" wire:model="name">
+                                    id="name" type="text" placeholder="Full Name" wire:model.defer="name">
                             </div>
                             <div class="px-3 py-3 mb-6 md:mb-0">
                                 <input
                                     class="appearance-none block w-full bg-green-lighter text-green-darker border border-green-200 focus:border-green-100 rounded py-3 px-4 mb-3 "
-                                    id="username" type="text" placeholder="Username" wire:model="username">
+                                    id="username" type="text" placeholder="Username" wire:model.defer="username">
                             </div>
                             <div class="px-3 py-3 mb-6 md:mb-0">
                                 <input
                                     class="appearance-none block w-full bg-green-lighter text-green-darker border border-green-200 focus:border-green-100 rounded py-3 px-4 mb-3 "
-                                    id="email" type="email" placeholder="Email" wire:model="email">
+                                    id="email" type="email" placeholder="Email" wire:model.defer="email">
                             </div>
                             <div class="px-3 py-3 mb-6 md:mb-0">
                                 <select
                                     name="level_id"
                                     class="appearance-none block w-full bg-green-lighter text-green-darker border border-green-200 focus:border-green-100 rounded py-3 px-4 mb-3 "
-                                    id="level_id" placeholder="level_id" wire:model="level_id">
+                                    id="level_id" placeholder="level_id" wire:model.defer="level_id">
                                     <option value="">-- Select Level --</option>
                                    @foreach ($levels as $key=>$value )
                                             <option value="{{$key}}"  >{{$value}}</option>
