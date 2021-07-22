@@ -20,9 +20,13 @@
                 x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 x-description="Modal panel, show/hide based on modal state."
                 class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                <form @if ($user_id >= 0) wire:submit.prevent="update({{ $user_id }})"
-            @else
-                    wire:submit.prevent="store" @endif>
+                <form 
+                    @if ($user_id) 
+                        wire:submit.prevent="update({{ $user_id }})" 
+                    @else 
+                        wire:submit.prevent="store" 
+                    @endif
+                >
                     <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                         <div class="sm:flex sm:items-start">
                             <div
@@ -35,7 +39,7 @@
                             </div>
                             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
                                 <h3 class="text-lg  font-medium text-gray-600" id="modal-title">
-                                    {{ empty($name) ? 'New User' : 'Edit '.$name }} 
+                                {{ empty($user_id) ? 'New User' : 'Edit '.$name }}
                                 </h3>
 
                             </div>
@@ -58,6 +62,17 @@
                                 <input
                                     class="appearance-none block w-full bg-green-lighter text-green-darker border border-green-200 focus:border-green-100 rounded py-3 px-4 mb-3 "
                                     id="email" type="email" placeholder="Email" wire:model="email">
+                            </div>
+                            <div class="px-3 py-3 mb-6 md:mb-0">
+                                <select
+                                    name="level_id"
+                                    class="appearance-none block w-full bg-green-lighter text-green-darker border border-green-200 focus:border-green-100 rounded py-3 px-4 mb-3 "
+                                    id="level_id" placeholder="level_id" wire:model="level_id">
+                                    <option value="">-- Select Level --</option>
+                                   @foreach ($levels as $key=>$value )
+                                            <option value="{{$key}}"  >{{$value}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>

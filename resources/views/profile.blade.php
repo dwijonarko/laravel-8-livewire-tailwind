@@ -1,4 +1,5 @@
 <x-app-layout>
+    <x-slot name="title">Profile : {{auth()->user()->name}}</x-slot>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('My Profile') }}
@@ -41,15 +42,17 @@
                                     <x-label for="confirm_password" :value="__('Password Confirmation')" />
                                     <x-input id="confirm_password" class="block mt-1 w-full" type="password" name="password_confirmation" value="" autocomplete="newconfirm-password" />
                                 </div>
-
-                                <div>
+                                @can('adminFunction',App\Models\User::class)
+                                   <div>
                                     <x-label for="level_id" :value="__('User level')" />
                                     <x-select name="level_id" id="level_id" class="blck mt-1 w-full"   >
                                         @foreach ($levels as $key=>$value )
                                             <option value="{{$key}}" {{ $key == Auth::user()->level_id ? 'selected' : '' }} >{{$value}}</option>
                                         @endforeach
                                     </x-select>
-                                </div>
+                                </div> 
+                                @endcan
+                                
 
                                
                             </div>

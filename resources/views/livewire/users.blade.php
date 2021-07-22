@@ -1,8 +1,9 @@
 <div x-data="{ modalForm: @entangle('showModal'),alert:@entangle('showAlert') }">
     @can('adminFunction',App\Models\User::class)
         @include('livewire.users.modal',['title'=>'users'])
+        <x-alert :title="__('Delete your data!')"/>
     @endcan
-    <x-alert :title="__('Delete your data!')"/>
+    
     <x-success-message />
     <div class="overflow-x-auto mt-6">
         <div class="w-full flex px-2 my-2">

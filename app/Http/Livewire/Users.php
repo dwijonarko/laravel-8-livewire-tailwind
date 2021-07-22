@@ -5,11 +5,13 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\User;
+use App\Models\UserLevel;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 class Users extends Component
 { 
     use WithPagination;
-    public $users,$user_id, $username, $name, $email, $password, $level_id,$searchParam;
+    public $users,$user_id, $username, $name, $email, $password, $level_id,$levels,$searchParam;
     public $updateMode = false;
     public $showModal = false;
     public $showAlert=false;
@@ -20,12 +22,16 @@ class Users extends Component
         'name' => 'required|string|max:255',
         'username' => 'required|string|min:3|max:32|unique:users',
         'email' => 'required|string|email|max:255|unique:users',
-        'password' => 'required|confirmed',
         'level_id' => 'required'
     ];
 
+    public function mount(){
+         $this->levels = UserLevel::pluck('name','id');
+    }
+
     public function render()
     {
+       
         $searchParam = '%'.$this->searchParam.'%';
         $order = $this->order;
         $columnOrder = $this->columnOrder;
@@ -37,7 +43,13 @@ class Users extends Component
     public function store()
     {
         $this->validate();
-        User::create(['name' => $this->name,'description'=>$this->description]);
+        User::create([
+            'name' => $this->name,
+            'username'=>$this->username,
+            'email'=>$this->email,
+            'level_id'=>$this->level_id,
+            'password'=>Hash::make($this->username)
+        ]);
         session()->flash('message', 'user Created Successfully.');
         $this->resetInputFields();
         $this->showModal = false;
@@ -45,15 +57,23 @@ class Users extends Component
 
     public function edit($id){
         $user = User::find($id);
+        
         $this->user_id = $user->id;
         $this->name = $user->name;
-        $this->description = $user->description;
+        $this->username = $user->username;
+        $this->email = $user->email;
+        $this->level_id = $user->level_id;
         $this->showModal = true ;
     }
 
     public function update($id){
         $this->validate();
-        User::find($id)->update(['name' => $this->name,'description'=>$this->description]);
+        User::find($id)->update([
+            'name' => $this->name,
+            'username'=>$this->username,
+            'email'=>$this->email,
+            'level_id'=>$this->level_id
+        ]);
         session()->flash('message', 'user Updated Successfully.');
         $this->resetInputFields();
         $this->showModal = false;
@@ -89,7 +109,9 @@ class Users extends Component
     {
         $this->user_id='';
         $this->name = '';
-        $this->description = '';
+        $this->username = '';
+        $this->email = '';
+        $this->level_id = '';
     }
 
     public function sort($column){

@@ -36,7 +36,7 @@
                             </div>
 
                         </div>
-                        <div class="form" class="w-full py-2">
+                        <div class="form w-full py-2">
                           Are you sure you want to delete this data? 
                         </div>
                     </div>
