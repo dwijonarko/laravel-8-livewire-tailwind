@@ -41,7 +41,7 @@
                             </div>
 
                         </div>
-                        <div class="form" class="w-full py-2">
+                        <div class="form w-full py-2">
 
                             <div class="px-3 py-3 mb-6 md:mb-0">
                                 <input type="hidden" name="category_id" wire:model="category_id">

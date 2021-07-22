@@ -35,27 +35,30 @@
                             </div>
                             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
                                 <h3 class="text-lg  font-medium text-gray-600" id="modal-title">
-                                    {{ $title }} {{ $user_id }}
+                                    {{ empty($name) ? 'New User' : 'Edit '.$name }} 
                                 </h3>
 
                             </div>
 
                         </div>
-                        <div class="form" class="w-full py-2">
+                        <div class="form w-full py-2">
 
                             <div class="px-3 py-3 mb-6 md:mb-0">
                                 <input type="hidden" name="user_id" wire:model="user_id">
                                 <input
                                     class="appearance-none block w-full bg-green-lighter text-green-darker border border-green-200 focus:border-green-100 rounded py-3 px-4 mb-3 "
-                                    id="name" type="text" placeholder="users Name" wire:model="name">
+                                    id="name" type="text" placeholder="Full Name" wire:model="name">
                             </div>
                             <div class="px-3 py-3 mb-6 md:mb-0">
-                                <textarea
+                                <input
                                     class="appearance-none block w-full bg-green-lighter text-green-darker border border-green-200 focus:border-green-100 rounded py-3 px-4 mb-3 "
-                                    id="description" placeholder="users Description"
-                                    wire:model="description"></textarea>
+                                    id="username" type="text" placeholder="Username" wire:model="username">
                             </div>
-
+                            <div class="px-3 py-3 mb-6 md:mb-0">
+                                <input
+                                    class="appearance-none block w-full bg-green-lighter text-green-darker border border-green-200 focus:border-green-100 rounded py-3 px-4 mb-3 "
+                                    id="email" type="email" placeholder="Email" wire:model="email">
+                            </div>
                         </div>
                     </div>
                     <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">

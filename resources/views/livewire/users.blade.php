@@ -1,12 +1,12 @@
 <div x-data="{ modalForm: @entangle('showModal'),alert:@entangle('showAlert') }">
-    @include('livewire.users.modal',[
-    'title'=>'users'
-    ])
+    @can('adminFunction',App\Models\User::class)
+        @include('livewire.users.modal',['title'=>'users'])
+    @endcan
     <x-alert :title="__('Delete your data!')"/>
     <x-success-message />
     <div class="overflow-x-auto mt-6">
         <div class="w-full flex px-2 my-2">
-            @can('adminFunction',App\Models\users::class)
+            @can('adminFunction',App\Models\User::class)
             <button wire:click="openModal(true)"
                 class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-1 bg-blue-600 text-base text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">Add</button>
             @endcan
@@ -49,7 +49,7 @@
                         Level @include('livewire.components.sort',['column'=>'level_id'])
                         </div>
                     </th>
-                    @can('adminFunction',App\Models\users::class)
+                    @can('adminFunction',App\Models\User::class)
                         <th class="px-4 py-2 " style="background-color:#f8f8f8">Action</th>
                     @endcan
                     
@@ -62,7 +62,7 @@
                         <td class="px-4 py-4">{{ $item->username }}</td> 
                         <td class="px-4 py-4">{{ $item->email }}</td> 
                         <td class="px-4 py-4">{{ $item->user_level->name }}</td> 
-                        @if (Auth::user()->can('adminFunction', App\Models\users::class))
+                        @if (Auth::user()->can('adminFunction', App\Models\User::class))
                         <td class="px-4 py-4 flex space-x-4"> 
                             <a href="#" wire:click.prevent="edit({{ $item->id }})" class="text-yellow-400">Edit</a>
                             <a href="#" wire:click.prevent="delete({{ $item->id }})" class="text-red-500">Delete</a>
