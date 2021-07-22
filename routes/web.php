@@ -27,5 +27,6 @@ Route::group(['middleware'=>'auth'],function(){
     Route::put('profile',[ProfileController::class,'update'])->name('profile.update');
 
     Route::view('categories','categories')->name('categories.index');
+    Route::view('users','users')->name('users.index');
 });
 require __DIR__.'/auth.php';
