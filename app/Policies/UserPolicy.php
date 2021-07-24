@@ -22,4 +22,8 @@ class UserPolicy
     public function adminFunction(User $user){
         return $user->user_level->name == 'administrator';
     }
+
+    public function view(User $user){
+        return $user->user_level->name != 'user';
+    }
 }
